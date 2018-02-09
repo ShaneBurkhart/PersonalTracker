@@ -14,5 +14,11 @@ module PersonalTracker
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # So we can see the logs from the docker container's logs.
+    # STDOUT needs to be an ActiveSupport::Logger for Rails.
+    logger = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 end
