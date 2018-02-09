@@ -1,0 +1,8 @@
+.card
+  %h1.ui.center.aligned.header Hello, #{current_user.first_name}.
+
+- @daily_trackers.each do |daily_tracker|
+  = render partial: daily_tracker.tracker_type, locals: { daily_tracker: daily_tracker }
+
+.card.text-center
+  %a.ui.large.basic.green.button{ href: new_tracker_path } Create a new tracker.

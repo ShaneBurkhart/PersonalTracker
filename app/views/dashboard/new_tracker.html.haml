@@ -1,0 +1,21 @@
+.card
+  %h1 Create a daily tracker.
+
+  = form_tag(trackers_path, class: "ui form #{@tracker.errors.blank? ? "" : "error"}", method: :post) do
+    .ui.error.message
+      .header There was a problem.
+      - @tracker.errors.full_messages.each do |message|
+        %p= message
+
+    .field
+      %label Give your tracker a name.
+      %input.ui.input{ name: "tracker[name]", placeholder: "Tracker name" }
+
+    .field
+      %label Pick a tracker type.
+      %select.ui.dropdown{ name: "tracker[tracker_type]" }
+        - DailyTracker::TYPES.each_with_index do |type, index|
+          %option{ value: type }= type.to_s.humanize
+
+    %button.ui.large.basic.green.button Create Tracker
+

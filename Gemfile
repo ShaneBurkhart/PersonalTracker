@@ -15,10 +15,13 @@ gem 'haml', '~> 5.0.4'
 gem 'jquery-rails', "~> 4.3.1"
 gem 'sass-rails',   '~> 5.0.7'
 gem 'uglifier', '>= 1.0.3'
+gem 'semantic-ui-sass'
 
 gem "devise", "~> 4.4.1"
 gem "cancancan", "~> 2.1.3"
 gem "simple_form", "~> 3.5.0"
+
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

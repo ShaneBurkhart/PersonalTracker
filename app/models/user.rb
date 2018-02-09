@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
-  devise :registerable, :database_authenticatable, :trackable, :validatable, :recoverable
+  devise :trackable
+  devise :omniauthable, omniauth_providers: [:google_oauth2]
 
-  validates :first_name, :last_name, presence: true
+  has_many :daily_trackers
+
+  validates :email, :first_name, :last_name, :image_url, presence: true
 
   delegate :can?, :cannot?, :to => :ability
 
@@ -11,5 +14,23 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def self.from_omniauth(auth_hash)
+    info = auth_hash['info']
+    email = info['email']
+
+    user = User.where(email: email).first
+
+    unless user
+      user = User.create(
+        email: email,
+        first_name: info['first_name'],
+        last_name: info['last_name'],
+        image_url: info['image']
+      )
+    end
+
+    user
   end
 end
