@@ -1,0 +1,18 @@
+web:
+    image: shaneburkhart/personal_tracker
+    ports:
+        - "3000:80"
+    links:
+        - pg
+    env_file:
+        - ../../prod.env
+
+pg:
+    image: postgres
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=mydb
+    volumes:
+        - /data/personal_tracker/pg:/var/lib/postgresql/data
+

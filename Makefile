@@ -3,6 +3,7 @@
 NAME=personal_tracker
 BASE_TAG=shaneburkhart/${NAME}
 DEV_FILE=deploy/dev/docker-compose.yml
+PROD_FILE=deploy/prod/docker-compose.yml
 
 all: run
 
@@ -16,6 +17,9 @@ db:
 
 run:
 	docker-compose -f ${DEV_FILE} -p ${NAME} up -d
+
+prod:
+	docker-compose -f ${PROD_FILE} -p ${NAME} up -d
 
 stop:
 	docker stop $$(docker ps -q) || echo "Nothing to stop..."
