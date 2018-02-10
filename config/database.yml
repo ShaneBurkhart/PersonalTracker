@@ -7,3 +7,13 @@ development:
     encoding: unicode
     database: mydb
     pool: 5
+
+production:
+    adapter: postgresql
+    host: pg
+    port: 5432
+    username: postgres
+    password: postgres
+    encoding: unicode
+    database: mydb
+    pool: 5
