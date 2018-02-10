@@ -67,5 +67,12 @@ logs:
 prod_build:
 	 docker build -t ${BASE_TAG} .
 
+prod_migrate:
+	docker-compose -f ${PROD_FILE} -p ${NAME} run --rm web bundle exec rake db:migrate || \
+		echo "\n\nDatabase needs a minute to start...\nWaiting 7 seconds for Postgres to start...\n\n"
+	sleep 7
+	docker-compose -f ${PROD_FILE} -p ${NAME} run --rm web bundle exec rake db:migrate
+
 prod:
 	docker-compose -f ${PROD_FILE} -p ${NAME} up -d
+
