@@ -6,5 +6,7 @@ class CreateDailyTrackerLogs < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :daily_tracker_logs, :daily_tracker_id
   end
 end

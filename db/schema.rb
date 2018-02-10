@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180209052722) do
     t.integer "daily_tracker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["daily_tracker_id"], name: "index_daily_tracker_logs_on_daily_tracker_id"
   end
 
   create_table "daily_trackers", force: :cascade do |t|
@@ -28,6 +29,9 @@ ActiveRecord::Schema.define(version: 20180209052722) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tracker_type"], name: "index_daily_trackers_on_tracker_type"
+    t.index ["user_id", "tracker_type"], name: "index_daily_trackers_on_user_id_and_tracker_type"
+    t.index ["user_id"], name: "index_daily_trackers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -7,7 +7,8 @@ class DailyTracker < ApplicationRecord
   validates :tracker_type, :name, presence: true
   validates :tracker_type, inclusion: { in: TYPES }
 
-  def update_todays_log!
+  def do_action!(action)
+    send("#{self.tracker_type}_action", action)
   end
 
   def todays_log
@@ -22,4 +23,21 @@ class DailyTracker < ApplicationRecord
 
     log
   end
+
+  private
+
+    def counter_action(action)
+      log = todays_log
+      count = log.data["count"] || 0
+
+      case action
+        when 'increment'
+          count += 1
+        when 'decrement'
+          count -= 1
+      end
+
+      log.data["count"] = count
+      log.save
+    end
 end

@@ -1,7 +1,7 @@
 .card
   %h1 Create a daily tracker.
 
-  = form_tag(trackers_path, class: "ui form #{@tracker.errors.blank? ? "" : "error"}", method: :post) do
+  = form_for(@tracker, method: :post, html: { class: "ui form #{@tracker.errors.blank? ? "" : "error"}" }) do
     .ui.error.message
       .header There was a problem.
       - @tracker.errors.full_messages.each do |message|

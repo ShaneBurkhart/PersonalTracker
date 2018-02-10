@@ -1,4 +1,11 @@
-.card.text-center
+.card.counter.text-center{ id: "daily_tracker_#{daily_tracker.id}" }
   %h2= daily_tracker.name
-  %p Count
-  %p= daily_tracker.todays_log.data.count || 0
+  .ui.grid.centered
+    .five.wide.column.right.aligned
+      %a.ui.orange.icon.button{ href: tracker_action_path(daily_tracker.id, "decrement") }
+        %i.minus.icon
+    .four.wide.column.center.aligned
+      %p.ui.header.huge= daily_tracker.todays_log.data["count"] || 0
+    .five.wide.column.left.aligned
+      %a.ui.teal.icon.button{ href: tracker_action_path(daily_tracker.id, "increment") }
+        %i.plus.icon

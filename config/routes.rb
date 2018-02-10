@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   get "/dashboard" => "dashboard#index"
   get "/dashboard/tracker/new" => "dashboard#new_tracker", as: :new_tracker
-  post "/dashboard/trackers" => "dashboard#create_tracker", as: :trackers
-  post "/dashboard/:tracker_id/update" => "dashboard#update_tracker"
+  post "/dashboard/trackers" => "dashboard#create_tracker", as: :daily_trackers
+  get "/dashboard/:tracker_id/:tracker_action" => "dashboard#tracker_action", as: :tracker_action
 end

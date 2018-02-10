@@ -7,5 +7,9 @@ class CreateDailyTrackers < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :daily_trackers, [:user_id, :tracker_type]
+    add_index :daily_trackers, :tracker_type
+    add_index :daily_trackers, :user_id
   end
 end
