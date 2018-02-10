@@ -18,9 +18,6 @@ db:
 run:
 	docker-compose -f ${DEV_FILE} -p ${NAME} up -d
 
-prod:
-	docker-compose -f ${PROD_FILE} -p ${NAME} up -d
-
 stop:
 	docker stop $$(docker ps -q) || echo "Nothing to stop..."
 
@@ -66,3 +63,9 @@ bundle:
 
 logs:
 	docker-compose -f ${DEV_FILE} -p ${NAME} logs -f
+
+prod_build:
+	 docker build -t ${BASE_TAG} .
+
+prod:
+	docker-compose -f ${PROD_FILE} -p ${NAME} up -d
