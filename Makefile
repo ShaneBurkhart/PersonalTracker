@@ -23,6 +23,9 @@ stop:
 clean: stop
 	docker rm $$(docker ps -aq) || echo "Nothing to remove..."
 
+restart:
+	docker-compose -f ${DEV_FILE} -p ${NAME} restart
+
 wipe: clean
 	rm -rf deploy/dev/data
 	$(MAKE) db || echo "\n\nDatabase needs a minute to start...\nWaiting 7 seconds for Postgres to start...\n\n"
