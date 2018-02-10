@@ -18,6 +18,8 @@ RUN rm -r tmp
 
 ADD . /app
 
+RUN rails assets:precompile
+
 EXPOSE 3000
 
 CMD ["bundle", "exec", "rails", "s"]
